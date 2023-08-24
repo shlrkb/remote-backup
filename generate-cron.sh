@@ -1,7 +1,5 @@
 #!/bin/bash
 
-HOME=$(pwd)
-
 HOUR=$(( $RANDOM % 6 + 3 ))
 MINUTE=$(( $RANDOM % 59 + 1 ))
 
