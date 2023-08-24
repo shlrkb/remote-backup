@@ -38,4 +38,15 @@ echo "dumping databases..."
 mysql -h 127.0.0.1 -u $MYSQLUSER -p$MYSQLPW -N -e 'show databases' | grep -Ev "^(Database|mysql|performance_schema|information_schema)$" | while read dbname; do mysqldump -h 127.0.0.1 -u $MYSQLUSER -p$MYSQLPW --complete-insert --routines --triggers --single-transaction "$dbname" | gzip -c > $MYSQLDIR/"$dbname".sql.gz; done
 echo "mysqldump complete"
 
+# rsync DBs to Hetzner
+echo "rsyncing dbs to destination..."
 $RSYNC_BIN ${RSYNC_OPTS} --rsh="ssh $SSH_OPTS -c aes128-ctr" -e 'ssh -p 23' $MYSQLDIR $ENDPOINT:/home/$DIRNAME/db
+echo "rsync complete"
+
+# cleanup local dbs
+echo "cleaning up local dbs"
+rm -rf $MYSQLDIR/$MYSQLUSER*
+echo "cleanup complete"
+
+
+echo "BACKUP COMPLETE"
