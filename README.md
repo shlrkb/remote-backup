@@ -1,7 +1,7 @@
 # remote-backup
-Powerhosting remote-backup
+Powerhosting remote-backup til 
 
-HETZNER SETUP:
+HETZNER SETUP: (https://www.hetzner.com/storage/storage-box)
 
 1) Aktiver SSH-support
 2) Aktiver automatic snapshots. Sættes til daily og kørselstid fx. omkring middag for at sikre backupkørsler når at blive færdige. Maksimum snapshots sættes efter personlig præference.
