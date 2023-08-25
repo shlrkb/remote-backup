@@ -11,8 +11,8 @@ else
 exit;
 fi
 
-BACKUP_DIR=$(pwd)/public_html/
-MYSQLDIR=$(pwd)/backups/
+BACKUP_DIR=$HOME/public_html/
+MYSQLDIR=$HOME/backups/
 
 RSYNC_BIN=/usr/bin/rsync
 RSYNC_OPTS="--progress -azh  --delete --ignore-errors --inplace --delete-excluded --force -4"
