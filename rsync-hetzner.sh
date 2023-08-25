@@ -19,8 +19,6 @@ RSYNC_BIN=/usr/bin/rsync
 RSYNC_OPTS="--progress -azh  --delete --ignore-errors --inplace --delete-excluded --force -4"
 SSH_OPTS="-o ConnectTimeout=5"
 
-ROPTS="--exclude var --exclude pub/media/mf_webp --exclude media/catalog/product/cache --exclude pub/media/catalog/product/cache --exclude app/etc/env.php"
-
 #checking if DB directory exists. else create
 if [ ! -d "$MYSQLDIR" ]; then
   mkdir $MYSQLDIR
@@ -30,7 +28,14 @@ ssh -p23 $ENDPOINT mkdir /home/$DIRNAME
 
 # rsync FILEDIR to Hetzner
 echo "rsyncing files to destination..."
-$RSYNC_BIN ${RSYNC_OPTS} --rsh="ssh $SSH_OPTS -c aes128-ctr" -e 'ssh -p 23' $ROPTS $BACKUP_DIR $ENDPOINT:/home/$DIRNAME/www
+$RSYNC_BIN ${RSYNC_OPTS} --rsh="ssh $SSH_OPTS -c aes128-ctr" -e 'ssh -p 23' \
+  --exclude "var/" \
+  --exclude "logs/*" \
+  --exclude "pub/media/mf_webp/" \
+  --exclude "media/catalog/product/cache/" \
+  --exclude "pub/media/catalog/product/cache/" \
+  --exclude "app/etc/env.php" \
+  $BACKUP_DIR $ENDPOINT:/home/$DIRNAME/www
 echo "rsync complete"
 
 # dump databases
