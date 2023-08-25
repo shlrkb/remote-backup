@@ -39,7 +39,7 @@ echo "rsync complete"
 
 # dump databases
 echo "dumping databases..."
-mysql -h 127.0.0.1 -u $MYSQLUSER -p$MYSQLPW -N -e 'show databases' | grep -Ev "^(Database|mysql|performance_schema|information_schema)$" | while read dbname; do mysqldump -h 127.0.0.1 -u $MYSQLUSER -p$MYSQLPW --complete-insert --routines --triggers --single-transaction "$dbname" | gzip -c > $MYSQLDIR/"$dbname".sql.gz; done
+mysql -h 127.0.0.1 -u $MYSQLUSER -p$MYSQLPW -N -e 'show databases' | grep -Ev "^(Database|mysql|performance_schema|information_schema)$" | while read dbname; do mysqldump -h 127.0.0.1 -u $MYSQLUSER -p$MYSQLPW --no-tablespaces --complete-insert --triggers --routines "$dbname" | gzip -c > $MYSQLDIR/"$dbname".sql.gz; done
 echo "mysqldump complete"
 
 # rsync DBs to Hetzner
