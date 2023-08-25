@@ -19,7 +19,7 @@ RSYNC_BIN=/usr/bin/rsync
 RSYNC_OPTS="--progress -azh  --delete --ignore-errors --inplace --delete-excluded --force -4"
 SSH_OPTS="-o ConnectTimeout=5"
 
-ROPTS="--exclude var --exclude pub/media/mf_webp --exclude media/catalog/product/cache --exclude pub/media/catalog/product/cache app/etc/env.php"
+ROPTS="--exclude var --exclude pub/media/mf_webp --exclude media/catalog/product/cache --exclude pub/media/catalog/product/cache --exclude app/etc/env.php"
 
 #checking if DB directory exists. else create
 if [ ! -d "$MYSQLDIR" ]; then
