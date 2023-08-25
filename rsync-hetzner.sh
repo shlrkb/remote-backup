@@ -2,15 +2,14 @@
 
 export PATHS=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 
-### EDIT THIS BRACKET TO YOUR NEEDS ###
-
-export DIRNAME=fx_mage2.dk
-export ENDPOINT=user@servername
-
-export MYSQLUSER=fx_mage2_dk
-export MYSQLPW=dit_mysql_password
-
-### END EDIT ###
+ENV=$HOME/remote-backup/.env
+if [ -f "$ENV" ]; then
+    source $HOME/remote-backup/.env
+else
+    echo "$ENV does not exist."
+    echo "Exiting...";
+exit;
+fi
 
 BACKUP_DIR=$(pwd)/public_html/
 MYSQLDIR=$(pwd)/backups/
