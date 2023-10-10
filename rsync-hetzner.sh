@@ -53,4 +53,4 @@ rm -rf $MYSQLDIR/$MYSQLUSER*
 echo "cleanup complete"
 
 
-echo "BACKUP COMPLETE"
+echo "BACKUP COMPLETE :)"

@@ -1,5 +1,5 @@
 # remote-backup
-Powerhosting remote-backup til 
+Powerhosting remote-backup til Hetzner-StorageBox
 
 HETZNER SETUP: (https://www.hetzner.com/storage/storage-box)
 
